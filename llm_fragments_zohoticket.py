@@ -1,6 +1,6 @@
 import os
 import llm
-import requests
+import httpx
 from dataclasses import dataclass
 
 
@@ -21,6 +21,9 @@ def zohoticket_loader(argument: str) -> llm.Fragment:
     org_id = os.getenv("ZOHODESK_ORG_ID", "")
 
     messages = fetch_ticket_conversation(org_id, client_id, client_secret, argument)
+    if not messages:
+        raise ValueError(f"No messages found for ticket {argument}")
+
     fragment = llm.Fragment(
         "\n".join(f"{message.actor}: {message.content}" for message in messages),
         source=f"Conversation for ticket {argument}",
@@ -50,7 +53,7 @@ def fetch_ticket_conversation(
     headers = {
         "Authorization": f"Zoho-oauthtoken {access_token}",
     }
-    response = requests.get(url, headers=headers)
+    response = httpx.get(url, headers=headers)
     response.raise_for_status()
     payload = response.json()
 
@@ -88,6 +91,7 @@ def obtain_access_token(
         "scope": "Desk.tickets.READ",
         "soid": f"Desk.{org_id}",
     }
-    response = requests.post(url, params=params)
+    response = httpx.post(url, params=params)
     response.raise_for_status()
     return response.json().get("access_token", "")
+

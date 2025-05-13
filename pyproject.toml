@@ -1,15 +1,12 @@
 [project]
 name = "llm-fragments-zohoticket"
-version = "0.2"
+version = "0.3"
 description = "LLM Fragment Loader for pulling ticket conversations from Zoho Desk"
 readme = "README.md"
 authors = [{name = "dents-shape"}]
 license = "MIT"
 requires-python = ">=3.9"
-dependencies = [
-    "llm>=0.24",
-	"requests"
-]
+dependencies = ["llm>=0.24"]
 
 [build-system]
 requires = ["setuptools"]
