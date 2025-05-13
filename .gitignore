@@ -2,3 +2,4 @@
 .enter.sh
 
 .tmp/
+__pycache__/
