@@ -1,6 +1,6 @@
 # llm-fragments-zohoticket
 
-[LLM plugin](https://llm.datasette.io/en/stable/plugins/plugin-hooks.html) for pulling Tickets from [Zoho Desk](https://www.zoho.com/desk/).
+[LLM plugin](https://llm.datasette.io/en/stable/plugins/index.html) for pulling Tickets from [Zoho Desk](https://www.zoho.com/desk/).
 
 ## Installation
 
